@@ -1,0 +1,7 @@
+{
+  "hello": "hello",
+  "user": {
+    "firstName": "First Name",
+    "email": "E-mail"
+  }
+}

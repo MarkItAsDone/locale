@@ -1,0 +1,47 @@
+{
+  "name": "@rove-team/library-locale",
+  "version": "1.0.1",
+  "description": "A library for handling different language resources.",
+  "main": "./dist/main-expose.js",
+  "types": "./dist/main-types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "tsc": "rm -rf dist && tsc --project ./tsconfig.publish.json",
+    "dts:bundle": "dts-bundle-generator -o ./dist/main-types.d.ts ./dist/main-expose.js",
+    "dts:publish": "npm run tsc && npm run dts:bundle",
+    "prepublishOnly": "npm run dts:publish",
+    "dev": "ts-node --project ./tsconfig.json ./example/index.ts",
+    "up": "node ./example.index.js"
+  },
+  "author": {
+    "name": "Rove Team Developers",
+    "email": "hi@roveteam.com",
+    "url": "https://roveteam.com"
+  },
+  "contributors": [
+    {
+      "name": "Hamidreza Amini",
+      "email": "hamidreza@markitasdone.com",
+      "url": "http://hramini.ir"
+    }
+  ],
+  "keywords": [
+    "typescript",
+    "jsx"
+  ],
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "16.3.2",
+    "dts-bundle-generator": "5.6.0",
+    "ts-node": "10.1.0",
+    "typescript": "4.1.3",
+    "@typescript-eslint/eslint-plugin": "4.14.1",
+    "@typescript-eslint/parser": "4.14.1",
+    "eslint": "7.18.0",
+    "eslint-config-airbnb-base": "14.2.1",
+    "eslint-plugin-import": "2.22.1"
+  }
+}

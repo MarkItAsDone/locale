@@ -1,0 +1,11 @@
+.vscode
+.idea
+.git
+.env
+
+/node_modules
+/dist
+src/**/*.js
+src/**/*.jsx
+src/**/*.d.ts
+src/**/*.map
