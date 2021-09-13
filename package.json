@@ -1,12 +1,12 @@
 {
-  "name": "@rove-team/library-locale",
+  "name": "@rove-team/locale",
   "version": "1.0.1",
   "description": "A library for handling different language resources.",
   "main": "./dist/main-expose.js",
   "types": "./dist/main-types.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
+  "homepage": "https://github.com/MarkItAsDone/locale",
+  "repository": "MarkItAsDone/locale",
   "scripts": {
     "tsc": "rm -rf dist && tsc --project ./tsconfig.publish.json",
     "dts:bundle": "dts-bundle-generator -o ./dist/main-types.d.ts ./dist/main-expose.js",
@@ -27,10 +27,7 @@
       "url": "http://hramini.ir"
     }
   ],
-  "keywords": [
-    "typescript",
-    "jsx"
-  ],
+  "keywords": ["typescript", "jsx", "locale", "i18n"],
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
