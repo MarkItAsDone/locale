@@ -1,7 +1,9 @@
 import { join } from 'path';
+import { readFileSync } from 'fs';
 import { ILocale, ILocaleEntry } from '../main/main-interface';
 import { NestedLocale } from '../nested-locale/nested-locale';
 import { INestedResource, IResource } from './locale-cache-interface';
+import { LocaleSide } from '../main/main-enum';
 
 export class LocaleCache implements ILocale {
   private resources: IResource;
@@ -15,9 +17,15 @@ export class LocaleCache implements ILocale {
   }
 
   public async setResources(entry: ILocaleEntry): Promise<void> {
-    const { language, localeFolderPath } = entry;
+    const { language, localeFolderPath, side = LocaleSide.CLIENT } = entry;
     const resourceDirectory: string = join(localeFolderPath, `/${language}.json`);
-    const resources: string = await this.readTextFile(resourceDirectory);
+    let resources: string = '';
+
+    if (side === LocaleSide.CLIENT) {
+      resources = await this.readTextFile(resourceDirectory);
+    } else {
+      resources = this.readTextFileStream(resourceDirectory);
+    }
 
     this.resources = JSON.parse(resources);
   }
@@ -48,6 +56,12 @@ export class LocaleCache implements ILocale {
       };
       rawFile.send(null);
     });
+  }
+
+  private readTextFileStream(filePath: string): string {
+    const rawFile: string = readFileSync(filePath, 'utf-8');
+
+    return rawFile;
   }
 
   private getNestedObject(chain: string): IResource {
