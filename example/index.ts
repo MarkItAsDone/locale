@@ -1,12 +1,15 @@
-import { join } from 'path';
 import { Locale } from '../src/main/main';
 import { Language } from './example-enum';
+import { englishUSA } from './languages/en-us';
+import { farsiIran } from './languages/fa-ir';
 
 async function example() {
-  const locale: Locale = new Locale();
-  await locale.cache({
-    language: Language.ENGLISH_US,
-    localeFolderPath: join(__dirname, './languages')
+  const locale: Locale = new Locale({
+    language: Language.FARSI_IR,
+    localeObject: {
+      [Language.ENGLISH_US]: englishUSA,
+      [Language.FARSI_IR]: farsiIran
+    }
   });
 
   const myLocale = locale.getCollection('user');

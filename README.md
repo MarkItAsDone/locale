@@ -10,42 +10,43 @@ To install this library you need to use the following command:
 npm install @rove-team/locale
 ```
 
-## Create JSON files
+## Create Object Files
 
-You need to create a folder and put your json files in that. It's required to pass the directory of your folder to the `Locale` class.
+It's recommended to create a typescript file for each language and put the object in that file.
 
 ## Usage
 
 1. Create an instance of `Locale` class and call the cache method:
 
 ```typescript
-const locale: Locale = new Locale();
-
-await locale.cache({
-  language: 'the name of your json file',
-  localeFolderPath: join(__dirname, 'folder path of json files')
-});
+const locale: Locale = new Locale({
+    language: 'en-us',
+    localeObject: {
+      'en-us': // english us object,
+      'fa-ir': // farsi it object
+    }
+  });
 ```
 
 2. Get the text value by using the `translate` method:
 
-```json
-{
-  "Hello": "Hi",
-  "Goodbye": "Bye",
-  "User": {
-    "FirstName": "First Name",
-    "LastName": "Last Name"
+```typescript
+export const englishUSA = {
+  hello: "Hi",
+  goodbye: "Bye",
+  user: {
+    firstName: "First Name",
+    lastName: "Last Name"
   }
 }
 ```
 
 ```typescript
-const helloValue: string = locale.translate('Hello');
+const helloValue: string = locale.translate('hello');
 ```
 
 ```typescript
-const userLocale = locale.getCollection('User');
+const userLocale = locale.getCollection('user');
 
-const firstNameValue: string = userLocale.translate('FirstName');
+const firstNameValue: string = userLocale.translate('firstName');
 ```

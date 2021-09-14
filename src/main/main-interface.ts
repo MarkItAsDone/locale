@@ -1,9 +1,18 @@
-import { LocaleSide } from './main-enum';
+export interface IResource {
+  readonly [key: string]: string | IResource;
+}
+
+export interface INestedResource {
+  [key: string]: IResource;
+}
+
+export interface IResourceObject {
+  readonly [key: string]: IResource;
+}
 
 export interface ILocaleEntry {
   readonly language: string;
-  readonly localeFolderPath: string;
-  readonly side?: LocaleSide;
+  readonly localeObject: IResourceObject;
 }
 
 export interface ILocale {
