@@ -32,7 +32,7 @@ const locale: Locale = new Locale({
 
 ```typescript
 export const englishUSA = {
-  hello: "Hi",
+  hello: "Hi, The {0} is now logged in as {1}",
   goodbye: "Bye",
   user: {
     firstName: "First Name",
@@ -42,7 +42,7 @@ export const englishUSA = {
 ```
 
 ```typescript
-const helloValue: string = locale.translate('hello');
+const helloValue: string = locale.translate('hello', ['user', 'admin']);
 ```
 
 ```typescript
