@@ -1,4 +1,5 @@
 import { NestedLocale } from '../nested-locale/nested-locale';
+import { StringFormat } from '../string-format/string-format';
 import { ILocale, ILocaleEntry, INestedResource, IResource } from './main-interface';
 
 export class Locale implements ILocale {
@@ -12,11 +13,17 @@ export class Locale implements ILocale {
     this.resources = localeObject[language];
   }
 
-  public translate(key: string): string {
+  public translate(key: string, stringFormatData?: string[]): string {
     const { resources } = this;
     const { [key]: value } = resources;
 
-    return typeof value === 'string' ? value : JSON.stringify(value) || key;
+    if (typeof value === 'string') {
+      const stringFormat: StringFormat = new StringFormat();
+
+      return stringFormat.format(value, stringFormatData);
+    }
+
+    return JSON.stringify(value) || key;
   }
 
   public getCollection(chain: string): ILocale {

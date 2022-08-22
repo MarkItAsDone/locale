@@ -1,11 +1,18 @@
 import { ILocale, IResource } from '../main/main-interface';
+import { StringFormat } from '../string-format/string-format';
 
 export class NestedLocale implements ILocale {
   public constructor(private resources: IResource) {}
 
-  public translate(key: string): string {
+  public translate(key: string, stringFormatData?: string[]): string {
     const { [key]: value } = this.resources;
 
-    return typeof value === 'string' ? value : JSON.stringify(value);
+    if (typeof value === 'string') {
+      const stringFormat: StringFormat = new StringFormat();
+
+      return stringFormat.format(value, stringFormatData);
+    }
+
+    return JSON.stringify(value);
   }
 }

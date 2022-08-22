@@ -5,7 +5,7 @@ import { farsiIran } from './languages/fa-ir';
 
 async function example() {
   const locale: Locale = new Locale({
-    language: Language.FARSI_IR,
+    language: Language.ENGLISH_US,
     localeObject: {
       [Language.ENGLISH_US]: englishUSA,
       [Language.FARSI_IR]: farsiIran
@@ -14,7 +14,7 @@ async function example() {
 
   const myLocale = locale.getCollection('user');
 
-  const helloValue = locale.translate('hello');
+  const helloValue = locale.translate('hello', ['karim', 'the best']);
   const goldValue = locale.translate('gold');
   const firstName = myLocale.translate('firstName');
 

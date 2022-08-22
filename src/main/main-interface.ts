@@ -16,5 +16,5 @@ export interface ILocaleEntry {
 }
 
 export interface ILocale {
-  translate(key: string): string;
+  translate(key: string, stringFormatData?: string[]): string;
 }
